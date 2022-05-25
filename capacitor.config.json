@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "AppShopee",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

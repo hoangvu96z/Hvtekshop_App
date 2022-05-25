@@ -1,0 +1,7 @@
+{
+  "name": "AppShopee",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
