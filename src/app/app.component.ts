@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public appPages = [
-    { title: 'Orders', url: '/folder/orders', icon: 'receipt' },
-    { title: 'Products', url: '/folder/products', icon: 'bag' },
-    { title: 'Customers', url: '/folder/customers', icon: 'people' },
-    { title: 'Coupons', url: '/folder/coupons', icon: 'pricetags' },
-    { title: 'Settings', url: '/folder/settings', icon: 'settings' },
-    { title: 'Reviews', url: '/folder/reviews', icon: 'star-half' },
+    { title: 'Orders', url: '/orders', icon: 'receipt' },
+    { title: 'Products', url: '/products', icon: 'bag' },
+    { title: 'Customers', url: '/customers', icon: 'people' },
+    { title: 'Coupons', url: '/coupons', icon: 'pricetags' },
+    { title: 'Settings', url: '/settings', icon: 'settings' },
+    { title: 'Reviews', url: '/reviews', icon: 'star-half' },
   ];
-  public labels = ['Family', 'Friends', 'Notes', 'Work', 'Travel', 'Reminders'];
+  public labels = [];
   constructor() {}
 }
