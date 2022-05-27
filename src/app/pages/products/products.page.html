@@ -5,5 +5,7 @@
 </ion-header>
 
 <ion-content>
-  {{data}}
+  <div class="row-table" *ngFor="let row of rowData">
+    <app-product-item [rowData]="row"></app-product-item>
+  </div>
 </ion-content>
