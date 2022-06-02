@@ -1,11 +1,34 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>products</ion-title>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="secondary">
+      <ion-button fill="outline">
+        <ion-icon name="add"></ion-icon>
+        Add Product
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Product</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="row-table" *ngFor="let row of rowData">
-    <app-product-item [rowData]="row"></app-product-item>
+  <ion-breadcrumbs>
+    <ion-breadcrumb>
+      Product
+    </ion-breadcrumb>
+    <ion-breadcrumb>
+      {{selectedCate}}
+    </ion-breadcrumb>
+  </ion-breadcrumbs>
+  <div class="row ml-2 pt-2">
+    <span *ngFor="let item of categories" class="badge mr-1" (click)="onClickCate(item)"><ion-badge>{{item.name}}</ion-badge></span>
+  </div>
+  <div class="content" *ngIf="rowData.length > 0">
+    <div class="row-table" *ngFor="let row of rowData">
+      <app-product-item [rowData]="row"></app-product-item>
+    </div>
+  </div>
+ 
+  <div class="no-product" *ngIf="rowData.length === 0">
+   <div class="pt-5" style="text-align: center;">No any product</div>
   </div>
 </ion-content>

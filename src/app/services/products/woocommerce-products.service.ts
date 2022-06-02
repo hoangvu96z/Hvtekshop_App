@@ -23,8 +23,9 @@ export class WoocommerceProductsService {
     public wooHelper: WoocommerceHelperService
   ) { }
 
-  getAllProducts() {
-    return this.httpClient.get<Product>(`products`)
+  getAllProducts(categoryId?) {
+    const category = categoryId ? `?category=${categoryId}` : '';
+    return this.httpClient.get<Product>(`products${category}`)
       .pipe(catchError(err => this.wooHelper.handleError(err)));
   }
 
@@ -85,5 +86,13 @@ export class WoocommerceProductsService {
   retrieveProductReview(productId: number, reviewId: number): Observable<ProductReview> {
     return this.httpClient.get<ProductReview>(`products/${productId}/reviews/${reviewId}`)
     .pipe(catchError(err => this.wooHelper.handleError(err)));
+  }
+
+  /**
+   * CATEROGIES SECTIONS
+   */
+
+  listAllCategories(): Observable<any> {
+    return this.httpClient.get<any>('products/categories').pipe(catchError(err => this.wooHelper.handleError(err)));
   }
 }
