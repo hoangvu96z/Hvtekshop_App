@@ -1,11 +1,11 @@
 
 
 <div class="row d-flex">
-  <div class="col-xl-4 col-md-6 col-12" *ngFor="let item of rowData" >
+  <div class="col-xl-3 col-md-6 col-12" *ngFor="let item of rowData" >
     <ion-card *ngIf="item.id">
       <ion-card-header>
-        <ion-card-subtitle>{{item.id}}</ion-card-subtitle>
         <ion-card-title>{{item.name}}</ion-card-title>
+        <ion-card-subtitle>{{item.id}}</ion-card-subtitle>
       </ion-card-header>
     
       <ion-card-content>
@@ -13,7 +13,17 @@
           <img  src="{{item.images[0]?.src}}" style="height: 200px;">
         </div>
         <span  *ngIf="!item.images[0]">No Image</span>
-        <ion-button [href]="item.permalink">View On Web</ion-button>
+        <div class="buttons" style="text-align: center;">
+          <ion-button tooltip="View On Web" [href]="item.permalink">
+            <ion-icon slot="icon-only" name="globe"></ion-icon>
+          </ion-button>
+          <ion-button color="danger" tooltip="Delete" (click)="delete(item)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+          <ion-button color="success" tooltip="View Detail" (click)="viewMore(item)">
+            <ion-icon slot="icon-only" name="ellipsis-horizontal"></ion-icon>
+          </ion-button>
+        </div>
       </ion-card-content>
     </ion-card>
   </div>

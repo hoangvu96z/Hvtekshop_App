@@ -15,20 +15,7 @@ export class AppComponent {
     { title: 'Settings', url: '/settings', icon: 'settings' },
     { title: 'Reviews', url: '/reviews', icon: 'star-half' },
   ];
-  public labels = [];
+  public labels = ['Login', 'Sign Out', 'Account'];
   constructor(public loadingController: LoadingController) {}
-  async presentLoading() {
-    const loading = await this.loadingController.create({
-      spinner: null,
-      duration: 5000,
-      message: 'Click the backdrop to dismiss early...',
-      translucent: true,
-      cssClass: 'custom-class custom-loading',
-      backdropDismiss: true
-    });
-    await loading.present();
 
-    const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed with role:', role);
-  }
 }

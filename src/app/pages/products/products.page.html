@@ -1,3 +1,5 @@
+<app-loading [loading]="loading" [text]="'Loading'"></app-loading>
+
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="secondary">
@@ -20,15 +22,15 @@
     </ion-breadcrumb>
   </ion-breadcrumbs>
   <div class="row ml-2 pt-2">
-    <span *ngFor="let item of categories" class="badge mr-1" (click)="onClickCate(item)"><ion-badge>{{item.name}}</ion-badge></span>
+    <span *ngFor="let item of categories" class="badge mr-1" (click)="onClickCate(item)"><ion-badge [color]="item.name === selectedCate ? 'secondary' : 'primary'">{{item.name}}</ion-badge></span>
   </div>
   <div class="content" *ngIf="rowData.length > 0">
     <div class="row-table" *ngFor="let row of rowData">
-      <app-product-item [rowData]="row"></app-product-item>
+      <app-product-item [rowData]="row" (eventProduct)="handleEvent($event)"></app-product-item>
     </div>
   </div>
  
-  <div class="no-product" *ngIf="rowData.length === 0">
-   <div class="pt-5" style="text-align: center;">No any product</div>
+  <div class="no-product" *ngIf="rowData.length === 0 && !loading">
+   <app-nodata></app-nodata>
   </div>
 </ion-content>

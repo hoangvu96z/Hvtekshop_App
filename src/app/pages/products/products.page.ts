@@ -13,6 +13,7 @@ import { WoocommerceProductsService } from 'src/app/services/products/woocommerc
 export class ProductsPage implements OnInit {
   data: Product[];
   rowData: any[] = [];
+  loading = false;
   categories: any[];
   selectedCate  = 'All products';
   constructor(public productService: ProductService,
@@ -25,6 +26,7 @@ export class ProductsPage implements OnInit {
   }
 
   prepareData() {
+    this.loading  = true;
     forkJoin(this.woocommerceProductsService.getAllProducts(),
       this.woocommerceProductsService.listAllCategories()
     ).subscribe(data => {
@@ -40,21 +42,34 @@ export class ProductsPage implements OnInit {
     if (data) {
       this.rowData = [];
       while (data.length > 0) {
-        const chuck = data.splice(0, 3);
+        const chuck = data.splice(0, 4);
         this.rowData.push([
           chuck[0],
           chuck[1] || {},
-          chuck[2] || {}
+          chuck[2] || {},
+          chuck[3] || {}
         ]);
       }
     }
+    this.loading = false;
   }
 
   onClickCate(event) {
-    console.log('event: ', event);
     this.selectedCate = event.name;
+    this.loading = true;
     this.woocommerceProductsService.getAllProducts(event.id).subscribe(data => {
       this.loadProduct(data);
     });
+  }
+
+  handleEvent(event) {
+    if (event) {
+      switch (event) {
+        case 'deleted':
+          this.prepareData();
+          break;
+        default: this.prepareData();
+      }
+    }
   }
 }
