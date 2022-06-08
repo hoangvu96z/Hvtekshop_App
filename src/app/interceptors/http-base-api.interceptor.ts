@@ -37,26 +37,32 @@ export class HttpBaseApiInterceptor implements HttpInterceptor {
           return CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(base_string, key));
       }
   });
-  const requestData = {
-    url: `${environment.origin}${environment.wcEndpoint}/${request.url}`,
-    method: request.method
-  };
-  const oauthData = oauth.authorize(requestData);
-  const params = {};
-  for (const property in oauthData) {
-    params[property] = oauthData[property];
-  }
-  console.log('params: ', params);
-
-  request = request.clone({
-    url : `${environment.origin}${environment.wcEndpoint}/${request.url}`,
-    setHeaders : {
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    setParams : params,
-  });
-  console.log('request: => ',request);
-  return next.handle(request);
+    if (request.url.includes('/wp/' || '/simple-jwt-login/')) {
+      request = request.clone({
+        url: `${environment.origin}${request.url}`,
+        setHeaders : {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+      });
+    } else {
+      const requestData = {
+        url: `${environment.origin}${environment.wcEndpoint}/${request.url}`,
+        method: request.method
+      };
+      const oauthData = oauth.authorize(requestData);
+      const params = {};
+      for (const property in oauthData) {
+        params[property] = oauthData[property];
+      }
+      request = request.clone({
+        url : `${environment.origin}${environment.wcEndpoint}/${request.url}`,
+        setHeaders : {
+          'Content-Type': 'application/json; charset=UTF-8',
+        },
+        setParams : params,
+      });
+    }
+    return next.handle(request);
   }
 }
 

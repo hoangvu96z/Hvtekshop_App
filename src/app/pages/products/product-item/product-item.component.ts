@@ -52,8 +52,8 @@ export class ProductItemComponent implements OnInit {
     toast.present();
     this.eventProduct.emit('deleted');
   }
+  
   viewMore(item) {
-    console.log('viewMore: ', item);
     this.presentToast();
   }
 

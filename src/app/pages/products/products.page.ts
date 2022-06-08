@@ -5,6 +5,7 @@ import { forkJoin } from 'rxjs';
 import { Product } from 'src/app/services';
 import { ProductService } from 'src/app/services/product.service';
 import { WoocommerceProductsService } from 'src/app/services/products/woocommerce-products.service';
+import { WordpressService } from 'src/app/services/wordpress.service';
 @Component({
   selector: 'app-products',
   templateUrl: './products.page.html',
@@ -16,8 +17,10 @@ export class ProductsPage implements OnInit {
   loading = false;
   categories: any[];
   selectedCate  = 'All products';
+  numberOfItemInTheRow = 4;
   constructor(public productService: ProductService,
     private woocommerceProductsService: WoocommerceProductsService,
+    private wordpressService: WordpressService,
     private httpClient: HttpClient
   ) { }
 
@@ -36,19 +39,21 @@ export class ProductsPage implements OnInit {
         this.loadProduct(allProducts);
       }
     });
+    this.wordpressService.getUsers().subscribe(data => {
+      console.log('data User: ', data);
+    });
   }
 
   loadProduct(data) {
     if (data) {
       this.rowData = [];
       while (data.length > 0) {
-        const chuck = data.splice(0, 4);
-        this.rowData.push([
-          chuck[0],
-          chuck[1] || {},
-          chuck[2] || {},
-          chuck[3] || {}
-        ]);
+        const chuck = data.splice(0, this.numberOfItemInTheRow);
+        const item = [];
+        for (let i = 0; i < this.numberOfItemInTheRow; i++) {
+          item.push(chuck[i] || {});
+        };
+        this.rowData.push(item);
       }
     }
     this.loading = false;
