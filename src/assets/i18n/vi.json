@@ -1,0 +1,9 @@
+{
+    "login-page" :{
+        "register" : "Đăng ký",
+        "login": "Đăng nhập",
+        "username": "Tên đăng nhập",
+        "password": "Mật khẩu",
+        "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu"
+    }
+}

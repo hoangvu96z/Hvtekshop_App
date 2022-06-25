@@ -1,0 +1,9 @@
+{
+    "login-page" : {
+        "register" : "Register",
+        "login": "Login",
+        "username": "Username",
+        "password": "Password",
+        "invalid-msg": "Invalid user or password"
+    }
+}

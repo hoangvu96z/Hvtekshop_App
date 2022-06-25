@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -16,6 +17,14 @@ export class AppComponent {
     { title: 'Reviews', url: '/reviews', icon: 'star-half' },
   ];
   public labels = ['Login', 'Sign Out', 'Account'];
-  constructor(public loadingController: LoadingController) {}
+  constructor(public loadingController: LoadingController,
+    private translate: TranslateService
+  ) {
+    this.initializeApp();
+  }
+
+  initializeApp() {
+    this.translate.setDefaultLang('en'); // add this
+  }
 
 }

@@ -37,13 +37,15 @@ export class HttpBaseApiInterceptor implements HttpInterceptor {
           return CryptoJS.enc.Base64.stringify(CryptoJS.HmacSHA1(base_string, key));
       }
   });
-    if (request.url.includes('/wp/' || '/simple-jwt-login/')) {
-      request = request.clone({
-        url: `${environment.origin}${request.url}`,
-        setHeaders : {
-          'Content-Type': 'application/json; charset=UTF-8',
-        },
-      });
+    if (request.url.includes('/wp/') || request.url.includes('/simple-jwt-login/') || request.url.includes('/assets/')) {
+      if (!request.url.includes('/assets/')) {
+        request = request.clone({
+          url: `${environment.origin}${request.url}`,
+          setHeaders : {
+            'Content-Type': 'application/json; charset=UTF-8',
+          },
+        });
+      }
     } else {
       const requestData = {
         url: `${environment.origin}${environment.wcEndpoint}/${request.url}`,
@@ -54,6 +56,7 @@ export class HttpBaseApiInterceptor implements HttpInterceptor {
       for (const property in oauthData) {
         params[property] = oauthData[property];
       }
+      console.log('request.url: ', request.url);
       request = request.clone({
         url : `${environment.origin}${environment.wcEndpoint}/${request.url}`,
         setHeaders : {

@@ -2,7 +2,7 @@
 
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login</ion-title>
+    <ion-title>{{ "login-page.login" | translate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -10,7 +10,7 @@
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <ion-item>
-        <ion-label position="floating">Username</ion-label>
+        <ion-label position="floating">{{ "login-page.username" | translate }}</ion-label>
         <ion-input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"></ion-input>
         <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
           <div *ngIf="f.username.errors.required">Username is required</div>
@@ -27,7 +27,7 @@
       </ion-item>
     </div>
     <div class="form-group">
-        <ion-button  [disabled]="loading" expand="full">Login</ion-button>
+        <ion-button  [disabled]="loading || loginForm.invalid" expand="full">Login</ion-button>
         <a routerLink="/register" class="btn btn-link">Register</a>
     </div>
   </form>
