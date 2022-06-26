@@ -1,9 +1,14 @@
 {
-    "login-page" : {
-        "register" : "Register",
+    "login-page": {
+        "register": "Register",
         "login": "Login",
         "username": "Username",
         "password": "Password",
         "invalid-msg": "Invalid user or password"
+    },
+    "register-page": {
+        "register": "Register",
+        "ok": "Ok",
+        "yes": "Yes",
     }
 }
