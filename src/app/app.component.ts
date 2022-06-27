@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-root',
@@ -18,13 +18,17 @@ export class AppComponent {
   ];
   public labels = ['Login', 'Sign Out', 'Account'];
   constructor(public loadingController: LoadingController,
+    platform: Platform,
     private translate: TranslateService
   ) {
-    this.initializeApp();
+    platform.ready().then(() => {
+      this.initializeApp();
+    });
   }
 
   initializeApp() {
-    this.translate.setDefaultLang('en'); // add this
+    this.translate.setDefaultLang('en');
+    this.translate.use('en');
   }
 
 }

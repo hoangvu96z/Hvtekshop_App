@@ -4,6 +4,10 @@
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
-        "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu"
+        "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu",
+        "username-msg": "Email is required",
+        "password-msg": "Password is required",
+        "register-msg-1": "If you don't have an account, please",
+        "register-msg-2": "first!"
     }
 }

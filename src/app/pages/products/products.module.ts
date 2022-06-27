@@ -11,6 +11,7 @@ import { ProductItemComponent } from './product-item/product-item.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddProductComponent } from './add-product/add-product.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -18,6 +19,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
     FormsModule,
     SharedModule,
     IonicModule,
+    TranslateModule.forChild(),
     ProductsPageRoutingModule,
   ],
   declarations: [ProductsPage, ProductItemComponent, ProductDetailComponent, AddProductComponent]
