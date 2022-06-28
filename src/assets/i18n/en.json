@@ -4,11 +4,17 @@
         "login": "Login",
         "username": "Username",
         "password": "Password",
-        "invalid-msg": "Invalid user or password"
+        "invalid-msg": "Invalid user or password",
+        "username-msg": "Email is required",
+        "password-msg": "Password is required",
+        "register-msg-1": "If you don't have an account, please",
+        "register-msg-2": "first!"
     },
     "register-page": {
         "register": "Register",
         "ok": "Ok",
         "yes": "Yes",
+        "username": "Username",
+        "email": "Email"
     }
 }

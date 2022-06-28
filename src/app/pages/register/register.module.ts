@@ -15,7 +15,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     IonicModule,
     RegisterPageRoutingModule,
-    TranslateModule.forRoot(),
+    TranslateModule.forChild(),
     ReactiveFormsModule
   ],
   declarations: [RegisterPage]

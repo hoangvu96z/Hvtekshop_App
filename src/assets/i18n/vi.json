@@ -1,9 +1,20 @@
 {
-    "login-page" :{
-        "register" : "Đăng ký",
+    "login-page": {
+        "register": "Đăng ký",
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
-        "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu"
+        "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu",
+        "username-msg": "Email is required",
+        "password-msg": "Password is required",
+        "register-msg-1": "If you don't have an account, please",
+        "register-msg-2": "first!"
+    },
+    "register-page": {
+        "register": "Đăng ký",
+        "ok": "Ok",
+        "yes": "Có",
+        "username": "Tên người dùng",
+        "email": "Email"
     }
 }
