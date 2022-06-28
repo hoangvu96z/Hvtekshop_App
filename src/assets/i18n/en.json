@@ -14,7 +14,17 @@
         "register": "Register",
         "ok": "Ok",
         "yes": "Yes",
+        "no": "Không",
         "username": "Username",
-        "email": "Email"
+        "password": "Password",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "website": "Website",
+        "language": "Language",
+        "submit": "Submit",
+        "minLength4": "Min Length is 4",
+        "maxLength32": "Max Length is 32",
+        "generatePassword": "Generate Password"
     }
 }

@@ -11,36 +11,50 @@
         <ion-input name="username" type="text" placeholder="{{ 'register-page.username'| translate }}"
           formControlName="username"></ion-input>
         <span *ngIf="f.username.errors?.minlength && f.username.touched">
-          <ion-text color="danger">Minimum length is 4</ion-text>
+          <ion-text color="danger">{{'register-page.minLength4'|translate}}</ion-text>
+        </span>
+        <span *ngIf="f.username.errors?.maxlength && f.username.touched">
+          <ion-text color="danger">{{'register-page.maxLength32'|translate}}</ion-text>
         </span>
       </ion-item>
       <ion-item>
-        <ion-input name="email" type="email" placeholder="{{ 'register-page.email'| translate }}" formControlName="email">
+        <ion-input name="email" type="email" placeholder="{{ 'register-page.email'| translate }}"
+          formControlName="email">
         </ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="firstName" type="text" placeholder="First Name" formControlName="firstName"></ion-input>
+        <ion-input name="firstName" type="text" placeholder="{{'register-page.firstName'| translate }}"
+          formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="lastName" type="text" placeholder="Last Name" formControlName="lastName"></ion-input>
+        <ion-input name="lastName" type="text" placeholder="{{'register-page.lastName'| translate }}"
+          formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="website" type="text" placeholder="Website" formControlName="website"></ion-input>
+        <ion-input name="website" type="text" placeholder="{{'register-page.website'| translate }}"
+          formControlName="website"></ion-input>
       </ion-item>
       <ion-list>
         <ion-item>
-          <ion-select placeholder="Language" formControlName="language">
+          <ion-select placeholder="{{'register-page.language'| translate }}" formControlName="language">
             <ion-select-option *ngFor="let lang of languages" [value]="lang">{{lang}}
             </ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
       <ion-item>
-        <ion-input name="password" type="password" placeholder="Password" formControlName="password"></ion-input>
+        <ion-button (click)="onGeneratePassword()">
+          {{'register-page.generatePassword' | translate}}</ion-button>
+        <ion-input name="genPassword" type="text" formControlName="genPassword"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-input name="password" type="text" placeholder="{{'register-page.password'| translate }}"
+          formControlName="password"></ion-input>
       </ion-item>
     </div>
 
-    <ion-button expand="full" type="submit">Submit</ion-button>
-    <!-- [disabled]="loading || register.invalid" expand="full" -->
+    <ion-button expand="full" type="submit" [disabled]="loading || registerForm.invalid">
+      {{'register-page.submit' | translate}}</ion-button>
   </form>
 </ion-content>

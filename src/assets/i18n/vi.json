@@ -15,6 +15,15 @@
         "ok": "Ok",
         "yes": "Có",
         "username": "Tên người dùng",
-        "email": "Email"
+        "password": "Mật khẩu",
+        "email": "Email",
+        "firstName": "Họ",
+        "lastName": "Tên",
+        "website": "Website",
+        "language": "Ngôn ngữ",
+        "submit": "Nộp",
+        "minLength4": "Lớn hơn 4 ký tự",
+        "maxLength32": "Nhỏ hơn hơn 32 ký tự",
+        "generatePassword": "Xuất ngẫu nhiên mật khẩu"
     }
 }
