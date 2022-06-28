@@ -1,4 +1,11 @@
 {
+    "common": {
+        "ok": "Ok",
+        "yes": "Yes",
+        "no": "No",
+        "warning": "Warning",
+        "confirm": "Confirm"
+    },
     "login-page" : {
         "register" : "Register",
         "login": "Login",
@@ -8,6 +15,11 @@
         "username-msg": "Email is required",
         "password-msg": "Password is required",
         "register-msg-1": "If you don't have an account, please",
-        "register-msg-2": "first!"
+        "register-msg-2": "first!",
+        "login-success": "Login successfully !",
+        "login-failed": "Username or password is incorrect"
+    },
+    "product-page" :{
+        "delete-msg" : "Do you want to delete "
     }
 }

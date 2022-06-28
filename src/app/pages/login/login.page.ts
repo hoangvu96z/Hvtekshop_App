@@ -3,8 +3,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { first } from 'rxjs/operators';
 import { AuthService } from 'src/app/services';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-login',
@@ -21,8 +23,10 @@ export class LoginPage implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
+    private sharedService : SharedService,
     private router: Router,
     private authenticationService: AuthService,
+    private translate: TranslateService
   ) {
     // redirect to products page if already logged in
     if (this.authenticationService.currentUserValue) {
@@ -32,38 +36,43 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
 
-    // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = '/products';
   }
 
-  // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
   onSubmit() {
     this.submitted = true;
-
-    // reset alerts on submit
-    // this.alertService.clear();
-
-    // stop here if form is invalid
-    if (this.loginForm.invalid) {
-      return;
-    }
-
     this.loading = true;
     this.authenticationService.login(this.f.username.value, this.f.password.value)
       .pipe(first())
       .subscribe(
         data => {
-          this.router.navigate([this.returnUrl]);
+          this.loading = false;
+          if (data.success) {
+            this.sharedService.toastMessage(
+              this.translate.instant('login-page.login-success'),
+              'success'
+            );
+            localStorage.setItem('jwt', data.data.jwt);
+            this.router.navigate([this.returnUrl]);
+          } else {
+            this.sharedService.toastMessage(
+              this.translate.instant('login-page.login-success'),
+              'danger'
+            );
+          }
         },
         error => {
-          // this.alertService.error(error);
           this.loading = false;
+          this.sharedService.toastMessage(
+            this.translate.instant('login-page.login-failed'),
+            'danger'
+          );
         });
   }
 
