@@ -1,13 +1,23 @@
 {
+    "common": {
+        "ok": "Đồng ý",
+        "yes": "Có",
+        "no": "Không",
+        "warning": "Cảnh báo",
+        "confirm": "Xác nhận"
+    },
     "login-page" :{
         "register" : "Đăng ký",
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
         "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu",
-        "username-msg": "Email is required",
-        "password-msg": "Password is required",
-        "register-msg-1": "If you don't have an account, please",
-        "register-msg-2": "first!"
+        "username-msg": "Vui lòng nhập Email",
+        "password-msg": "Vui lòng nhập mật khẩu",
+        "register-msg-1": "Nếu bạn chưa có tài khoản vui lòng nhấn",
+        "register-msg-2": "trước !"
+    },
+    "product-page" :{
+        "delete-msg" : "Bạn có muốn xoá sản phẩm "
     }
 }
