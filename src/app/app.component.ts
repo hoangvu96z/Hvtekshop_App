@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { LoadingController, Platform } from '@ionic/angular';
 import { TranslateService } from '@ngx-translate/core';
+import { AuthService } from './services';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -19,7 +21,9 @@ export class AppComponent {
   public labels = ['Login', 'Sign Out', 'Account'];
   constructor(public loadingController: LoadingController,
     platform: Platform,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private router: Router,
+    private authService: AuthService
   ) {
     platform.ready().then(() => {
       this.initializeApp();
@@ -29,6 +33,19 @@ export class AppComponent {
   initializeApp() {
     this.translate.setDefaultLang('en');
     this.translate.use('en');
+  }
+
+  action(act) {
+    switch (act) {
+      case 'Sign Out':
+        this.signOut();
+        break;
+    }
+  }
+
+  signOut() {
+    this.authService.logout();
+    this.router.navigate(['./login']);
   }
 
 }

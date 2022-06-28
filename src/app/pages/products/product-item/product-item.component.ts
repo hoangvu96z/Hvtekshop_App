@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AlertController, ToastController } from '@ionic/angular';
+import { TranslateService } from '@ngx-translate/core';
 import { Product, WoocommerceProductsService } from 'src/app/services';
+import { SharedService } from 'src/app/shared/shared.service';
 
 @Component({
   selector: 'app-product-item',
@@ -12,28 +14,23 @@ export class ProductItemComponent implements OnInit {
   @Output() eventProduct = new EventEmitter();
   constructor(public alertController: AlertController,
     private toastController: ToastController,
+    private sharedService: SharedService,
+    private translate: TranslateService,
     private productService: WoocommerceProductsService
     ) { }
 
-  ngOnInit() {
+  ngOnInit() {}
 
-  }
-
-  async delete(item) {
-    const alert = await this.alertController.create({
-      cssClass: 'custom-alert-class',
-      header: 'Delete',
-      subHeader: `Do you want to delete ${item.name} ?`,
-      message: 'Please confirm it by press Yes button',
-      buttons: [{text : 'No'}, {
-        text: 'Yes',
-        handler: () => {
-          this.callDelete(item);
-        }
-      }]
-    });
-
-    await alert.present();
+  delete(item) {
+    this.sharedService.yesNoAlert(
+      this.translate.instant('common.confirm'),
+      `${this.translate.instant('product-page.delete-msg')}${item.name} ?`,
+      () => {this.callDelete(item);},
+      () => {},
+      this.translate.instant('common.yes'),
+      this.translate.instant('common.no'),
+      'custom-alert-class',
+    );
    }
 
    callDelete(item) {
@@ -44,12 +41,8 @@ export class ProductItemComponent implements OnInit {
      });
    }
 
-   async presentToast() {
-    const toast = await this.toastController.create({
-      message: 'Your product deleted succefully !',
-      duration: 2000
-    });
-    toast.present();
+  presentToast() {
+    this.sharedService.toastMessage('Your product deleted succefully !');
     this.eventProduct.emit('deleted');
   }
   

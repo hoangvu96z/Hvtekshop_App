@@ -50,8 +50,8 @@ export class AuthService {
       .pipe(catchError(err => this.wooHelper.handleError(err)));
   }
 
-  login(username, password) {
-      return this.httpClient.post<any>(`api/user/authenticate`, { username, password })
+  login(email, password) {
+      return this.httpClient.post<any>(`/?rest_route=/simple-jwt-login/v1/auth`, { email, password })
           .pipe(map(user => {
               // store user details and jwt token in local storage to keep user logged in between page refreshes
               localStorage.setItem('currentUser', JSON.stringify(user));

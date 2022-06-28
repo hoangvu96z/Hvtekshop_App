@@ -1,41 +1,41 @@
 <app-loading [loading]="loading" [text]="'Loading'"></app-loading>
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{ "login-page.login" | translate }}</ion-title>
-  </ion-toolbar>
-</ion-header>
 
 <ion-content padding>
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
     <ion-grid>
-      <ion-row color="primary" justify-content-center>
-        <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
-          <div padding>
-            <ion-item>
-              <ion-input name="email" type="email" formControlName="username" placeholder="your@email.com" required>
-              </ion-input>
-            </ion-item>
-            <div class="error" *ngIf="f.username.errors && f.username.errors.required" class="error-msg">
-              {{'login-page.username-msg' | translate}}</div>
-            <ion-item>
-              <ion-input name="password" type="password" formControlName="password" placeholder="Password" required>
-              </ion-input>
-            </ion-item>
-            <div *ngIf="f.password.errors && f.password.errors.required" class="error-msg">
-              {{'login-page.password-msg' | translate}}</div>
-          </div>
-          <div padding>
-            <ion-button size="large" type="submit" [disabled]="loginForm.invalid" expand="block">
-              {{'login-page.login' | translate}}</ion-button>
-          </div>
-        </ion-col>
+      <ion-row class="ion-justify-content-center">
+        <!-- <object data="assets/images/logo-sm.svg" class="logo"> </object> -->
+        <img class="logo" src="assets/images/logo-img.png" alt="Logo Hvtekshop">
       </ion-row>
+      <div class="login-section">
+        <ion-row class="ion-justify-content-center">
+          <ion-col align-self-center size-md="6" size-lg="5" size-xs="12">
+            <div padding>
+              <ion-item class="control">
+                <ion-input color="primary" name="email" type="email" formControlName="username" placeholder="your@email.com" required>
+                </ion-input>
+              </ion-item>
+              <div class="error" *ngIf="f.username.touched && f.username.errors && f.username.errors.required" class="error-msg">
+                {{'login-page.username-msg' | translate}}</div>
+              <ion-item class="control">
+                <ion-input color="primary" name="password" type="password" placeholder="{{'login-page.password' | translate}}" formControlName="password"required>
+                </ion-input>
+              </ion-item>
+              <div *ngIf="f.password.touched && f.password.errors && f.password.errors.required" class="error-msg">
+                {{'login-page.password-msg' | translate}}</div>
+            </div>
+            <div padding class>
+              <ion-button type="submit" [disabled]="loginForm.invalid" expand="block">
+                {{'login-page.login' | translate}}</ion-button>
+            </div>
+          </ion-col>
+        </ion-row>
+        <ion-row class="ion-justify-content-center">
+          <div style="text-align: center">
+            {{'login-page.register-msg-1' | translate}} <a routerLink='/register'> {{'login-page.register' | translate}}</a> {{'login-page.register-msg-2' | translate}}
+          </div>
+        </ion-row>
+      </div>
     </ion-grid>
   </form>
-
-  <ion-row>
-    <div text-center>
-      {{'login-page.register-msg-1' | translate}} <a routerLink='/register'> {{'login-page.register' | translate}}</a> {{'login-page.register-msg-2' | translate}}
-    </div>
-  </ion-row>
 </ion-content>

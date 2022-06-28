@@ -4,6 +4,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { IonicModule } from '@ionic/angular';
 import { SharedService } from './shared.service';
 import { NodataComponent } from './nodata/nodata.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -11,6 +12,7 @@ import { NodataComponent } from './nodata/nodata.component';
   declarations: [LoadingComponent, NodataComponent],
   imports: [
     CommonModule,
+    TranslateModule.forChild(),
     IonicModule
   ],
   providers: [SharedService],
