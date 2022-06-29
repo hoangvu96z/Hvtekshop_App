@@ -1,12 +1,15 @@
 {
   "name": "HvtekshopApp",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "0.0.2",
+  "author": "hvtekshop",
+  "homepage": "http://hvtekshop.com/",
   "scripts": {
     "ng": "ng",
     "start": "ionic serve",
     "build": "ng build",
+    "build:android": "ionic build && ionic cap copy && ionic cap sync",
+    "add:android": "ionic cap add android",
+    "open:android": "ionic cap open android",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -74,5 +77,5 @@
     "ts-node": "~8.3.0",
     "typescript": "~4.4.4"
   },
-  "description": "An Ionic project"
+  "description": "An Hvtekshop project"
 }
