@@ -37,14 +37,17 @@ export class ProductsPage implements OnInit {
         const [allProducts, categories] = data;
         this.categories = categories;
         this.loadProduct(allProducts);
+        this.loading = false;
       }
+    }, err => {
+      this.loading = false;
     });
     this.wordpressService.getUsers().subscribe(data => {
-      console.log('data User: ', data);
     });
   }
 
   loadProduct(data) {
+    this.loading = false;
     if (data) {
       this.rowData = [];
       while (data.length > 0) {
@@ -56,7 +59,6 @@ export class ProductsPage implements OnInit {
         this.rowData.push(item);
       }
     }
-    this.loading = false;
   }
 
   onClickCate(event) {
