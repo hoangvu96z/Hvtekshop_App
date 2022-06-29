@@ -17,6 +17,7 @@
         "no": "Không",
         "username": "Username",
         "password": "Password",
+        "confirm_password": "Confirm Password",
         "email": "Email",
         "firstName": "First Name",
         "lastName": "Last Name",

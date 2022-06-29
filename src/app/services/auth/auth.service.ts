@@ -29,8 +29,7 @@ export class AuthService {
   }
 
   register(registerData: any): Observable<any> {
-    const payload = this.wooHelper.includeEncoded(registerData);
-    return this.httpClient.post(`/wp-json/wp/v2/users`, payload)
+    return this.httpClient.post(`/wp-json/wp/v2/users`, registerData)
       .pipe(catchError(err => this.wooHelper.handleError(err)));
   }
 
