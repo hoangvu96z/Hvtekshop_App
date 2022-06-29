@@ -1,13 +1,6 @@
 {
-    "common": {
-        "ok": "Ok",
-        "yes": "Yes",
-        "no": "No",
-        "warning": "Warning",
-        "confirm": "Confirm"
-    },
-    "login-page" : {
-        "register" : "Register",
+    "login-page": {
+        "register": "Register",
         "login": "Login",
         "username": "Username",
         "password": "Password",
@@ -15,11 +8,24 @@
         "username-msg": "Email is required",
         "password-msg": "Password is required",
         "register-msg-1": "If you don't have an account, please",
-        "register-msg-2": "first!",
-        "login-success": "Login successfully !",
-        "login-failed": "Username or password is incorrect"
+        "register-msg-2": "first!"
     },
-    "product-page" :{
-        "delete-msg" : "Do you want to delete "
+    "register-page": {
+        "register": "Register",
+        "ok": "Ok",
+        "yes": "Yes",
+        "no": "Không",
+        "username": "Username",
+        "password": "Password",
+        "confirm_password": "Confirm Password",
+        "email": "Email",
+        "firstName": "First Name",
+        "lastName": "Last Name",
+        "website": "Website",
+        "language": "Language",
+        "submit": "Submit",
+        "minLength4": "Min Length is 4",
+        "maxLength32": "Max Length is 32",
+        "generatePassword": "Generate Password"
     }
 }

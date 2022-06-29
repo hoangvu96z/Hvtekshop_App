@@ -1,23 +1,29 @@
 {
-    "common": {
-        "ok": "Đồng ý",
-        "yes": "Có",
-        "no": "Không",
-        "warning": "Cảnh báo",
-        "confirm": "Xác nhận"
-    },
-    "login-page" :{
-        "register" : "Đăng ký",
+    "login-page": {
+        "register": "Đăng ký",
         "login": "Đăng nhập",
         "username": "Tên đăng nhập",
         "password": "Mật khẩu",
         "invalid-msg": "Bạn đã nhập sai tên đăng nhập hoặc mật khẩu",
-        "username-msg": "Vui lòng nhập Email",
-        "password-msg": "Vui lòng nhập mật khẩu",
-        "register-msg-1": "Nếu bạn chưa có tài khoản vui lòng nhấn",
-        "register-msg-2": "trước !"
+        "username-msg": "Email is required",
+        "password-msg": "Password is required",
+        "register-msg-1": "If you don't have an account, please",
+        "register-msg-2": "first!"
     },
-    "product-page" :{
-        "delete-msg" : "Bạn có muốn xoá sản phẩm "
+    "register-page": {
+        "register": "Đăng ký",
+        "ok": "Ok",
+        "yes": "Có",
+        "username": "Tên người dùng",
+        "password": "Mật khẩu",
+        "email": "Email",
+        "firstName": "Họ",
+        "lastName": "Tên",
+        "website": "Website",
+        "language": "Ngôn ngữ",
+        "submit": "Nộp",
+        "minLength4": "Lớn hơn 4 ký tự",
+        "maxLength32": "Nhỏ hơn hơn 32 ký tự",
+        "generatePassword": "Xuất ngẫu nhiên mật khẩu"
     }
 }
