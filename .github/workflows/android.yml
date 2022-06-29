@@ -1,0 +1,19 @@
+name: Build Angular App and Deploy on Firebase
+on:
+  push:
+    branches:
+      - refactor
+
+jobs:
+  build:
+    name: Build & Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@main
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run build:android
+      - name: Run Tests
+        run: npm run test
