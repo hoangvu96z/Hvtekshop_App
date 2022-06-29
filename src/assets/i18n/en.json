@@ -26,6 +26,9 @@
         "submit": "Submit",
         "minLength4": "Min Length is 4",
         "maxLength32": "Max Length is 32",
-        "generatePassword": "Generate Password"
+        "generatePassword": "Generate Password",
+        "invalidPassword": "At least one: upper case | lower case | digit | special character | Minimum 8 in length",
+        "role": "Role",
+        "emailInvalid": "Email is invalid"
     }
 }

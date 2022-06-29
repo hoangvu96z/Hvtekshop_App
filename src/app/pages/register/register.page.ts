@@ -5,7 +5,8 @@ import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services';
 import { first } from 'rxjs/operators';
 import { SharedService } from 'src/app/shared/shared.service';
-import { LANGUAGES } from 'src/app/const/shared.enum';
+import { LANGUAGES, ROLES } from 'src/app/const/shared.enum';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -19,8 +20,9 @@ export class RegisterPage implements OnInit {
   loading = false;
   returnUrl: string;
   randomPassword: string;
-
-
+  subscription: Subscription;
+  // roles: string[] = ['Subscriber', 'Administrator'];
+  roles = ROLES;
 
   constructor(
     private translate: TranslateService,
@@ -39,9 +41,10 @@ export class RegisterPage implements OnInit {
       firstName: new FormControl(null,),
       lastName: new FormControl(null,),
       website: new FormControl(null,),
-      password: new FormControl(null, Validators.required),
+      password: new FormControl(null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$')]),
       language: new FormControl('en_US', Validators.required),
-      genPassword: new FormControl(null)
+      genPassword: new FormControl(null),
+      role: new FormControl(ROLES[0].key, Validators.required)
     });
 
     // get return url from route parameters or default to '/'
@@ -53,12 +56,13 @@ export class RegisterPage implements OnInit {
    */
   onGeneratePassword() {
     let pass = '';
-    const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    const alphabetUppercase = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     const num = '0123456789';
     const specialChar = '~!@#$%^&*()';
     this.registerForm.get('password').reset();
 
-    for (let i = 1; i <= 3; i++) {
+    for (let i = 1; i <= 4; i++) {
       const pass1 = Math.floor(Math.random() * alphabet.length) + 1;
       pass += alphabet.charAt(pass1).toString();
     }
@@ -71,6 +75,11 @@ export class RegisterPage implements OnInit {
     for (let i = 1; i <= 2; i++) {
       const pass3 = Math.floor(Math.random() * specialChar.length) + 1;
       pass += specialChar.charAt(pass3);
+    }
+
+    for (let i = 1; i <= 2; i++) {
+      const pass4 = Math.floor(Math.random() * alphabetUppercase.length) + 1;
+      pass += alphabetUppercase.charAt(pass4);
     }
 
     this.randomPassword = pass;
@@ -88,22 +97,29 @@ export class RegisterPage implements OnInit {
       url: dataSubmit.website,
       locale: dataSubmit.language,
       password: dataSubmit.password,
+      roles: dataSubmit.role
     }
     this.submitted = true;
     this.loading = true;
-    this.authenticationService.register(submitData).pipe(first()).subscribe(
+    this.subscription = this.authenticationService.register(submitData).pipe(first()).subscribe(
       (data) => {
-        this.router.navigate([this.returnUrl]);
         this.loading = false;
+        this.router.navigate([this.returnUrl]);
       },
       (error) => {
         this.sharedService.toastMessage(`[ERROR] ${error.message}`, 'danger');
         this.loading = false;
       }
     );
+    this.loading = false;
   }
 
   get f() {
     return this.registerForm.controls;
+  }
+
+  ngDestroy() {
+    this.loading = false;
+    this.subscription.unsubscribe();
   }
 }

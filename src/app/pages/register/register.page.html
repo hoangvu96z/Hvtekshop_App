@@ -9,8 +9,8 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <div class="form-group">
       <ion-item>
-        <ion-input name="username" type="text" placeholder="{{ 'register-page.username'| translate }}"
-          formControlName="username"></ion-input>
+        <ion-label position="floating">{{'register-page.username'| translate}}</ion-label>
+        <ion-input name="username" type="text" formControlName="username"></ion-input>
         <span *ngIf="f.username.errors?.minlength && f.username.touched">
           <ion-text color="danger">{{'register-page.minLength4'|translate}}</ion-text>
         </span>
@@ -19,38 +19,56 @@
         </span>
       </ion-item>
       <ion-item>
-        <ion-input name="email" type="email" placeholder="{{ 'register-page.email'| translate }}"
-          formControlName="email">
+        <ion-label position="floating">{{ 'register-page.email'| translate}}</ion-label>
+        <ion-input name="email" type="email" formControlName="email">
         </ion-input>
+        <span *ngIf="f.email.invalid && f.email.touched">
+          <ion-text color="danger">{{ 'register-page.emailInvalid'| translate}}</ion-text>
+        </span>
       </ion-item>
       <ion-item>
-        <ion-input name="firstName" type="text" placeholder="{{'register-page.firstName'| translate }}"
-          formControlName="firstName"></ion-input>
+        <ion-label position="floating">{{ 'register-page.firstName'| translate}}</ion-label>
+        <ion-input name="firstName" type="text" formControlName="firstName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="lastName" type="text" placeholder="{{'register-page.lastName'| translate }}"
-          formControlName="lastName"></ion-input>
+        <ion-label position="floating">{{'register-page.lastName'| translate}}</ion-label>
+        <ion-input name="lastName" type="text" formControlName="lastName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input name="website" type="text" placeholder="{{'register-page.website'| translate }}"
-          formControlName="website"></ion-input>
+        <ion-label position="floating">{{'register-page.website'| translate}}</ion-label>
+        <ion-input name="website" type="text" formControlName="website"></ion-input>
       </ion-item>
       <ion-list>
         <ion-item>
-          <ion-select placeholder="{{'register-page.language'| translate }}" formControlName="language">
+          <ion-label position="floating">{{ 'register-page.language'| translate}}</ion-label>
+          <ion-select formControlName="language">
             <ion-select-option *ngFor="let lang of languages" [value]="lang.key">{{lang.display}}
             </ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
       <ion-item>
-        <ion-input name="genPassword" type="text" formControlName="genPassword" placeholder="{{'register-page.password'| translate }}"></ion-input>
+        <ion-input name="genPassword" type="text" readonly formControlName="genPassword"
+          placeholder="{{'register-page.password'| translate }}"></ion-input>
         <ion-button (click)="onGeneratePassword()">
           {{'register-page.generatePassword' | translate}}</ion-button>
       </ion-item>
       <ion-item>
-        <ion-input name="password" type="text" placeholder="{{'register-page.confirm_password'| translate }}" formControlName="password"></ion-input>
+        <ion-label position="floating">{{'register-page.confirm_password'| translate}}</ion-label>
+        <ion-input name="password" type="password" formControlName="password"></ion-input>
+        <span *ngIf="f.password.errors?.pattern && f.password.touched">
+          <ion-text color="danger">{{'register-page.invalidPassword'|translate}}</ion-text>
+        </span>
       </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">{{ 'register-page.role'| translate}}</ion-label>
+          <ion-select formControlName="role">
+            <ion-select-option *ngFor="let role of roles" [value]="role.key">{{role.display}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
     </div>
 
     <ion-button expand="full" type="submit" [disabled]="loading || registerForm.invalid">
