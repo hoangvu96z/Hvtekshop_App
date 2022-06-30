@@ -19,3 +19,13 @@ export const LANGUAGES = [{
     display: 'Tiếng Việt',
     key: 'vi'
 }];
+export const ROLES = [
+    {
+        display: 'Subscriber',
+        key: 'subscriber',
+    },
+    {
+        display: 'Administrator',
+        key: 'administrator'
+    },
+];
