@@ -1,6 +1,6 @@
 /* eslint-disable quote-props */
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import { Product } from 'src/app/services';
 import { ProductService } from 'src/app/services/product.service';
@@ -11,7 +11,7 @@ import { WordpressService } from 'src/app/services/wordpress.service';
   templateUrl: './products.page.html',
   styleUrls: ['./products.page.scss'],
 })
-export class ProductsPage implements OnInit {
+export class ProductsPage implements AfterViewInit, OnDestroy{
   data: Product[];
   rowData: any[] = [];
   loading = false;
@@ -24,25 +24,25 @@ export class ProductsPage implements OnInit {
     private httpClient: HttpClient
   ) { }
 
-  ngOnInit() {
+  ngAfterViewInit(): void {
+    this.loading = false;
     this.prepareData();
   }
+
 
   prepareData() {
     this.loading  = true;
     forkJoin(this.woocommerceProductsService.getAllProducts(),
       this.woocommerceProductsService.listAllCategories()
     ).subscribe(data => {
+        this.loading = false;
       if (data) {
         const [allProducts, categories] = data;
         this.categories = categories;
         this.loadProduct(allProducts);
-        this.loading = false;
       }
     }, err => {
       this.loading = false;
-    });
-    this.wordpressService.getUsers().subscribe(data => {
     });
   }
 
@@ -59,6 +59,10 @@ export class ProductsPage implements OnInit {
         this.rowData.push(item);
       }
     }
+  }
+
+  ngOnDestroy(): void {
+      this.loading = false;
   }
 
   onClickCate(event) {

@@ -58,8 +58,9 @@ export class LoginPage implements OnInit, OnDestroy {
               this.translate.instant('login-page.login-success'),
               'success'
             );
-            localStorage.setItem('jwt', data.data.jwt);
-            this.router.navigate([this.returnUrl]);
+            setTimeout(() => {
+              this.router.navigate([this.returnUrl]);
+            }, 100);
           } else {
             this.sharedService.toastMessage(
               this.translate.instant('login-page.login-success'),

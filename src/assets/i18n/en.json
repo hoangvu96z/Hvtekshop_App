@@ -5,6 +5,7 @@
         "username": "Username",
         "password": "Password",
         "invalid-msg": "Invalid user or password",
+        "login-success": "Login successfully !",
         "username-msg": "Email is required",
         "password-msg": "Password is required",
         "register-msg-1": "If you don't have an account, please",
@@ -30,6 +31,6 @@
         "invalidPassword": "At least one: upper case | lower case | digit | special character | Minimum 8 in length",
         "role": "Role",
         "emailInvalid": "Email is invalid",
-        "register_success": "congratulations your account has been created"
+        "register_success": "Congratulations, your account has been created"
     }
 }
