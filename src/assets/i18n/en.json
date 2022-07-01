@@ -29,6 +29,7 @@
         "generatePassword": "Generate Password",
         "invalidPassword": "At least one: upper case | lower case | digit | special character | Minimum 8 in length",
         "role": "Role",
-        "emailInvalid": "Email is invalid"
+        "emailInvalid": "Email is invalid",
+        "register_success": "congratulations your account has been created"
     }
 }

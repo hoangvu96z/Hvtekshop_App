@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { SharedService } from 'src/app/shared/shared.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   loading = false;
@@ -76,4 +76,7 @@ export class LoginPage implements OnInit {
         });
   }
 
+  ngOnDestroy(): void {
+      this.loading = false;
+  }
 }

@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable @typescript-eslint/member-ordering */
+/* eslint-disable max-len */
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services';
-import { first } from 'rxjs/operators';
 import { SharedService } from 'src/app/shared/shared.service';
 import { LANGUAGES, ROLES } from 'src/app/const/shared.enum';
 import { Subscription } from 'rxjs';
@@ -13,15 +15,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage implements OnInit {
+export class RegisterPage implements OnInit, OnDestroy {
   registerForm: FormGroup;
   languages = LANGUAGES;
-  submitted = false;
   loading = false;
   returnUrl: string;
   randomPassword: string;
   subscription: Subscription;
-  // roles: string[] = ['Subscriber', 'Administrator'];
   roles = ROLES;
 
   constructor(
@@ -98,12 +98,15 @@ export class RegisterPage implements OnInit {
       locale: dataSubmit.language,
       password: dataSubmit.password,
       roles: dataSubmit.role
-    }
-    this.submitted = true;
+    };
     this.loading = true;
-    this.subscription = this.authenticationService.register(submitData).pipe(first()).subscribe(
+    this.subscription = this.authenticationService.register(submitData).pipe().subscribe(
       (data) => {
         this.loading = false;
+        this.sharedService.toastMessage(
+          this.translate.instant('register-page.register_success'),
+          'success'
+        );
         this.router.navigate([this.returnUrl]);
       },
       (error) => {
@@ -111,14 +114,13 @@ export class RegisterPage implements OnInit {
         this.loading = false;
       }
     );
-    this.loading = false;
   }
 
   get f() {
     return this.registerForm.controls;
   }
 
-  ngDestroy() {
+  ngOnDestroy() {
     this.loading = false;
     this.subscription.unsubscribe();
   }
