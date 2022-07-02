@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from 'src/app/shared/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -9,34 +10,41 @@ const routes: Routes = [
   },
   {
     path: 'products',
-    loadChildren: () => import('./pages/products/products.module').then( m => m.ProductsPageModule)
+    loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'orders',
-    loadChildren: () => import('./pages/orders/orders.module').then( m => m.OrdersPageModule)
+    loadChildren: () => import('./pages/orders/orders.module').then(m => m.OrdersPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'customers',
-    loadChildren: () => import('./pages/customers/customers.module').then( m => m.CustomersPageModule)
+    loadChildren: () => import('./pages/customers/customers.module').then(m => m.CustomersPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'settings',
-    loadChildren: () => import('./pages/settings/settings.module').then( m => m.SettingsPageModule)
+    loadChildren: () => import('./pages/settings/settings.module').then(m => m.SettingsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'coupons',
-    loadChildren: () => import('./pages/coupons/coupons.module').then( m => m.CouponsPageModule)
+    loadChildren: () => import('./pages/coupons/coupons.module').then(m => m.CouponsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'reviews',
-    loadChildren: () => import('./pages/reviews/reviews.module').then( m => m.ReviewsPageModule)
+    loadChildren: () => import('./pages/reviews/reviews.module').then(m => m.ReviewsPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',
-    loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
-  },  {
+    loadChildren: () => import('./pages/login/login.module').then(m => m.LoginPageModule)
+  },
+  {
     path: 'register',
-    loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
+    loadChildren: () => import('./pages/register/register.module').then(m => m.RegisterPageModule)
   },
 
 ];
@@ -47,4 +55,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

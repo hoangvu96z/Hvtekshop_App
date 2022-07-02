@@ -32,5 +32,8 @@
         "role": "Role",
         "emailInvalid": "Email is invalid",
         "register_success": "Congratulations, your account has been created"
+    },
+    "common": {
+        "plsLogin": "Please login first!"
     }
 }
