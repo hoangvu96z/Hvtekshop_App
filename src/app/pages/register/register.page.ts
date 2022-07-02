@@ -107,7 +107,9 @@ export class RegisterPage implements OnInit, OnDestroy {
           this.translate.instant('register-page.register_success'),
           'success'
         );
-        this.router.navigate([this.returnUrl]);
+        setTimeout(() => {
+          this.router.navigate([this.returnUrl]);
+        }, 200);
       },
       (error) => {
         this.sharedService.toastMessage(`[ERROR] ${error.message}`, 'danger');

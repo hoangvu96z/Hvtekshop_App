@@ -49,12 +49,12 @@
       </ion-list>
       <ion-item>
         <ion-input name="genPassword" type="text" readonly formControlName="genPassword"
-          placeholder="{{'register-page.password'| translate }}"></ion-input>
+          placeholder="{{'register-page.passwordSuggestion'| translate }}"></ion-input>
         <ion-button (click)="onGeneratePassword()">
           {{'register-page.generatePassword' | translate}}</ion-button>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">{{'register-page.confirm_password'| translate}}</ion-label>
+        <ion-label position="floating">{{'register-page.passwordEnter'| translate}}</ion-label>
         <ion-input name="password" type="password" formControlName="password"></ion-input>
         <span *ngIf="f.password.errors?.pattern && f.password.touched">
           <ion-text color="danger">{{'register-page.invalidPassword'|translate}}</ion-text>
