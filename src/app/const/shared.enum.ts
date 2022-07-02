@@ -28,4 +28,16 @@ export const ROLES = [
         display: 'Administrator',
         key: 'administrator'
     },
+    {
+        display: 'Author',
+        key: 'author',
+    },
+    {
+        display: 'Contributor ',
+        key: 'contributor'
+    },
+    {
+        display: 'Editor',
+        key: 'editor'
+    },
 ];
