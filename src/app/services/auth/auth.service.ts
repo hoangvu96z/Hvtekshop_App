@@ -50,13 +50,13 @@ export class AuthService {
   }
 
   login(email, password) {
-      return this.httpClient.post<any>(`/?rest_route=/simple-jwt-login/v1/auth`, { email, password })
-          .pipe(map(user => {
-              // store user details and jwt token in local storage to keep user logged in between page refreshes
-              localStorage.setItem('currentUser', JSON.stringify(user));
-              this.currentUserSubject.next(user);
-              return user;
-          }));
+    return this.httpClient.post<any>(`/?rest_route=/simple-jwt-login/v1/auth`, { email, password })
+      .pipe(map(user => {
+        // store user details and jwt token in local storage to keep user logged in between page refreshes
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        this.currentUserSubject.next(user);
+        return user;
+      }));
   }
 
   logout() {

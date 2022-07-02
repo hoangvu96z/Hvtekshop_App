@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/dot-notation */
 /* eslint-disable @typescript-eslint/member-ordering */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { SharedService } from 'src/app/shared/shared.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
 })
-export class LoginPage implements OnInit {
+export class LoginPage implements OnInit, OnDestroy {
 
   loginForm: FormGroup;
   loading = false;
@@ -58,8 +58,9 @@ export class LoginPage implements OnInit {
               this.translate.instant('login-page.login-success'),
               'success'
             );
-            localStorage.setItem('jwt', data.data.jwt);
-            this.router.navigate([this.returnUrl]);
+            setTimeout(() => {
+              this.router.navigate([this.returnUrl]);
+            }, 100);
           } else {
             this.sharedService.toastMessage(
               this.translate.instant('login-page.login-success'),
@@ -76,4 +77,7 @@ export class LoginPage implements OnInit {
         });
   }
 
+  ngOnDestroy(): void {
+      this.loading = false;
+  }
 }
