@@ -2,7 +2,7 @@
 /* eslint-disable @typescript-eslint/member-ordering */
 /* eslint-disable max-len */
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AuthService } from 'src/app/services';
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit, OnDestroy {
-  registerForm: FormGroup;
+  registerForm: UntypedFormGroup;
   languages = LANGUAGES;
   loading = false;
   returnUrl: string;
@@ -26,7 +26,7 @@ export class RegisterPage implements OnInit, OnDestroy {
 
   constructor(
     private translate: TranslateService,
-    private fb: FormBuilder,
+    private fb: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private sharedService: SharedService,
@@ -35,16 +35,16 @@ export class RegisterPage implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
-      username: new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(32)]),
-      email: new FormControl(null, [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]),
-      firstName: new FormControl(null,),
-      lastName: new FormControl(null,),
-      website: new FormControl(null,),
-      password: new FormControl(null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$')]),
-      language: new FormControl('en_US', Validators.required),
-      genPassword: new FormControl(null),
-      role: new FormControl(ROLES[0].key, Validators.required)
+    this.registerForm = new UntypedFormGroup({
+      username: new UntypedFormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(32)]),
+      email: new UntypedFormControl(null, [Validators.required, Validators.pattern(/\S+@\S+\.\S+/)]),
+      firstName: new UntypedFormControl(null,),
+      lastName: new UntypedFormControl(null,),
+      website: new UntypedFormControl(null,),
+      password: new UntypedFormControl(null, [Validators.required, Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{7,}$')]),
+      language: new UntypedFormControl('en_US', Validators.required),
+      genPassword: new UntypedFormControl(null),
+      role: new UntypedFormControl(ROLES[0].key, Validators.required)
     });
 
     // get return url from route parameters or default to '/'
